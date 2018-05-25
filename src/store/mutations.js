@@ -15,7 +15,10 @@ const mutations = {
   [types.LOGIN]: (state, data) => {
     localStorage.token = data;
     state.token = data;
-    console.log(state,data,1)
+  },
+  [types.LOGOUT]: (state) => {
+    localStorage.removeItem('token');
+    state.token = null
   },
 };
 

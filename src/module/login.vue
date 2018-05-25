@@ -46,7 +46,6 @@ export default {
 
                   if(this.loginForm.userName == res.data.userName && this.loginForm.passWord == res.data.passWord){
                     store.commit(types.LOGIN,435324324)
-                    console.log(store.state.mutations.token,0)
                     this.$message({
                       message: '登陆成功',
                       type: 'success',

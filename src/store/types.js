@@ -4,4 +4,5 @@
 /*更新路由方向*/
 export const UPDATE_DIRECTION = 'UPDATE_DIRECTION';
 export const LOGIN = 'login';
+export const LOGOUT = 'logout';
 

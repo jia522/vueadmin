@@ -28,7 +28,6 @@ router.beforeEach((to, from, next) => {
   }
   if(to.meta.requireAuth){
     if(store.state.mutations.token){
-      console.log(store.state.mutations.token,1)
       next();
     }else {
       next({
