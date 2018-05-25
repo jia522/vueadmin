@@ -32,7 +32,8 @@ const router = [
         name: 'bb',
         component: bb,
         meta: {
-          title: 'bb'
+          title: 'bb',
+          requireAuth: true,
         }
       },
       {
@@ -40,6 +41,7 @@ const router = [
         name: 'communication1',
         component: communication1,
         meta: {
+          requireAuth: true,
           title: 'communication1'
         }
       },
@@ -48,6 +50,7 @@ const router = [
         name: 'children1',
         component: children1,
         meta: {
+          requireAuth: true,
           title: '通过props传递数据'
         }
       },
@@ -56,6 +59,7 @@ const router = [
         name: 'communication2',
         component: communication2,
         meta: {
+          requireAuth: true,
           title: '通过$on传递父组件方法'
         }
       },
@@ -64,6 +68,7 @@ const router = [
         name: 'communication3',
         component: communication3,
         meta: {
+          requireAuth: true,
           title: '通过refs获取'
         }
       },

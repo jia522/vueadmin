@@ -14,6 +14,8 @@
 
 <script>
   import axios from 'axios';
+  import store from '../store/index'
+  import * as types from '../store/types'
 export default {
     name:'Login',
    data () {
@@ -37,11 +39,14 @@ export default {
   methods: {
     adminClick (formname) {
       this.loginDisabled = true;
+      var _this = this;
         this.$refs[formname].validate((valid) => {
             if(valid){
               axios.get('../../password.json').then(res => {
-                  var _this = this;
+
                   if(this.loginForm.userName == res.data.userName && this.loginForm.passWord == res.data.passWord){
+                    store.commit(types.LOGIN,435324324)
+                    console.log(store.state.mutations.token,0)
                     this.$message({
                       message: '登陆成功',
                       type: 'success',
