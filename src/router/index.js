@@ -7,6 +7,7 @@ import communication1 from '@/module/assembly/communication1.vue'
 import children1 from '@/module/assembly/children1.vue'
 import communication2 from '@/module/assembly/communication2.vue'
 import communication3 from '@/module/assembly/communication3.vue'
+import communication4 from '@/module/assembly/communication4.vue'
 
 
 Vue.use(Router)
@@ -30,34 +31,34 @@ const router = [
     children:[
       {
         path: '/bb',
-        name: 'bb',
+        name: '选项1',
         component: bb,
         meta: {
-          title: 'bb',
+          title: '选项1',
           requireAuth: true,
         }
       },
       {
         path: '/communication1',
-        name: 'communication1',
+        name: '通过props传递数据',
         component: communication1,
-        meta: {
-          requireAuth: true,
-          title: 'communication1'
-        }
-      },
-      {
-        path: '/children1',
-        name: 'children1',
-        component: children1,
         meta: {
           requireAuth: true,
           title: '通过props传递数据'
         }
       },
       {
+        path: '/children1',
+        name: '通过props传递数据1',
+        component: children1,
+        meta: {
+          requireAuth: true,
+          title: '通过props传递数据1'
+        }
+      },
+      {
         path: '/communication2',
-        name: 'communication2',
+        name: '通过$on传递父组件方法',
         component: communication2,
         meta: {
           requireAuth: true,
@@ -66,11 +67,20 @@ const router = [
       },
       {
         path: '/communication3',
-        name: 'communication3',
+        name: '通过refs获取',
         component: communication3,
         meta: {
           requireAuth: true,
           title: '通过refs获取'
+        }
+      },
+      {
+        path: '/communication4',
+        name: '导航二',
+        component: communication4,
+        meta: {
+          requireAuth: true,
+          title: '导航二'
         }
       },
     ]

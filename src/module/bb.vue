@@ -74,13 +74,13 @@ export default {
   },
   mounted(){
     var bb = () => {
-        console.log(this)
+ /*       console.log(this)*/
     }
 
     bb();
     var cc = () =>{
         this.bv = 5;
-        console.log(this)
+    /*    console.log(this)*/
     }
     cc();
   }

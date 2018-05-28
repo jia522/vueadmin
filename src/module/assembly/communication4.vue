@@ -1,12 +1,10 @@
 <template>
   <div>
-     <h2>父组件</h2>
-    <Child-one ref="child"></Child-one>
+     <h2>导航二</h2>
   </div>
 </template>
 
 <script>
-  import ChildOne from './children3.vue';
 export default {
    data () {
     return {
@@ -14,13 +12,11 @@ export default {
     }
   },
   components:{
-    ChildOne
   },
   methods: {
 
   },
   mounted(){
-    this.$refs['child'].childMethod();
   }
 }
 

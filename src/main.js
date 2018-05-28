@@ -23,8 +23,8 @@ if (window.localStorage.getItem('token')) {
 console.log(window.localStorage.getItem('token'),3,store.state.mutations.token)
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
-  if (to.meta.title) {
-    document.title = to.meta.title
+  if (to.name) {
+    document.title = to.name
   }
   if(to.meta.requireAuth){
     if(store.state.mutations.token){

@@ -9,7 +9,7 @@
 </template>
 <script>
   export default {
-      methods:{
+    methods:{
           divHeight(){
             var headHeight = $('.divHead').height();
             var footerHeight = $('.divFoot').height();
