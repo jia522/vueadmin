@@ -1,15 +1,15 @@
 import axios from 'axios';
 import {Message} from 'element-ui';
-import store from './store/'
-import * as types from './store/types'
+import store from '../store/'
+import * as types from '../store/types'
 const baseUrl = '';
 var instance = axios.create({
   baseURL: baseUrl,
   timeout: 9000,
   headers: {'X-Requested-With': 'XMLHttpRequest'},
 });
-//添加请求拦截器
-/*axios.interceptors.request.use((config) => {
+/*//添加请求拦截器
+axios.interceptors.request.use((config) => {
   const token = window.sessionStorage.getItem('token');
   if (token) {
     config.headers['token'] = token;
@@ -20,8 +20,8 @@ var instance = axios.create({
 }, (error) => {
   console.log('error: ', error);
   Promise.reject(error);
-});
-//添加响应拦截器*/
+});*/
+//添加响应拦截器
 axios.interceptors.request.use((config) => {
    if(store.state.token){
      config.headers.Authorization = `token${store.state.token}`;
@@ -58,6 +58,16 @@ instance.interceptors.response.use(function(response){
   }
 },function(error){
   //响应数据错误时
+  if(error.response){
+    switch (error.response.status){
+      case 401:
+        store.commit(types.LOGIN);
+        router.replace({
+          path:'/',
+          query: {redirect: router.currentRoute.fullPath}
+        })
+    }
+  }
   return Promise.reject('error');
 })
 export {instance,baseUrl};

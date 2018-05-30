@@ -62,6 +62,9 @@
 </template>
 
 <script>
+  import {fetch} from '../api/dataHandling'
+  import {urlConfig} from '../api/urlConfig'
+
 export default {
    name: 'HelloWorld',
    data () {
@@ -73,6 +76,12 @@ export default {
 
   },
   mounted(){
+       console.log(urlConfig,43534545)
+    fetch('get',urlConfig.bbq).then(response => {
+     console.log(response,3432)
+    }).catch(error => {
+      console.log('error' + error)
+    })
     var bb = () => {
  /*       console.log(this)*/
     }

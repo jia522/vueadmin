@@ -20,12 +20,13 @@ FastClick.attach(document.body)
 if (window.localStorage.getItem('token')) {
   store.commit(types.LOGIN, window.localStorage.getItem('token'))
 }
+document.title = '后台管理系统'
 console.log(window.localStorage.getItem('token'),3,store.state.mutations.token)
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
-  if (to.name) {
+/*  if (to.name) {
     document.title = to.name
-  }
+  }*/
   if(to.meta.requireAuth){
     if(store.state.mutations.token){
       next();

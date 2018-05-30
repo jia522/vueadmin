@@ -1,4 +1,4 @@
-import {instance} from '../utils/request';
+import {instance} from '../api/request';
 function fetch(type,url,parma){
   return instance({
     method:type,
