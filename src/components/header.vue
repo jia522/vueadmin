@@ -1,7 +1,7 @@
 <template>
     <div class="divHead">
       <div class="logo">
-        <img :src="login"/>数据平台中心
+        <img :src="login"/>管理后台
       </div>
       <span class="getout" @click="logout"><i class="icon iconfont icon-tuichudenglu"></i> 退出</span>
       <div class="portrait">
@@ -14,7 +14,7 @@
   import * as types from '../store/types'
   import store from '../store/index'
   import touxiang from '@/styles/images/touxiang.jpg'
-  import login from '@/styles/images/loginLogo.png';
+  import login from '@/styles/images/touxiang.jpg';
   export default {
     name: 'app',
     data () {

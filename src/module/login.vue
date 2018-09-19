@@ -2,7 +2,7 @@
   <div class="adminlogin">
     <el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginCon">
       <div class="logo">
-        <img :src="login"/><span>数据平台管理中心</span>
+        <img :src="login"/><span>管理后台</span>
       </div>
 
       <el-form-item prop="userName">
@@ -22,7 +22,7 @@
   import axios from 'axios';
   import store from '../store/index'
   import * as types from '../store/types';
-  import login from '@/styles/images/loginLogo.png';
+  import login from '@/styles/images/touxiang.jpg';
 export default {
     name:'Login',
    data () {
@@ -91,7 +91,7 @@ export default {
   height: 100%;
   position: relative;
 /*  background: url("../styles/images/loginBg.jpg");*/
-  background: url("../styles/images/loginBg1.png");
+  background: url("../styles/images/loginBg.jpg");
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='loginBg.jpg',sizingMethod='scale');
   -moz-background-size:100% 100%;
   background-size:100% 100%;
