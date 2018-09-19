@@ -5,8 +5,8 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import ElementUI from 'element-ui';
+import { Loading } from 'element-ui';
 import '../node_modules/element-ui/lib/theme-chalk/index.css';
-import '../src/assets/iconfont/iconfont';
 import store from './store/index'
 import * as types from './store/types'
 Vue.use(ElementUI);
@@ -20,13 +20,10 @@ FastClick.attach(document.body)
 if (window.localStorage.getItem('token')) {
   store.commit(types.LOGIN, window.localStorage.getItem('token'))
 }
-document.title = '后台管理系统'
-console.log(window.localStorage.getItem('token'),3,store.state.mutations.token)
+document.title = '数据平台中心';
+
+/*console.log(window.localStorage.getItem('token'),3,store.state.mutations.token)*/
 router.beforeEach((to, from, next) => {
-  /* 路由发生变化修改页面title */
-/*  if (to.name) {
-    document.title = to.name
-  }*/
   if(to.meta.requireAuth){
     if(store.state.mutations.token){
       next();
@@ -39,7 +36,10 @@ router.beforeEach((to, from, next) => {
   }else {
     next()
   }
-})
+});
+router.afterEach((to) =>{
+
+});
 
 new Vue({
   el: '#app',

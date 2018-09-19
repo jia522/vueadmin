@@ -8,23 +8,9 @@ var instance = axios.create({
   timeout: 9000,
   headers: {'X-Requested-With': 'XMLHttpRequest'},
 });
-/*//添加请求拦截器
 axios.interceptors.request.use((config) => {
-  const token = window.sessionStorage.getItem('token');
-  if (token) {
-    config.headers['token'] = token;
-  } else {
-    console.log('无token');
-  }
-  return config;
-}, (error) => {
-  console.log('error: ', error);
-  Promise.reject(error);
-});*/
-//添加响应拦截器
-axios.interceptors.request.use((config) => {
-   if(store.state.token){
-     config.headers.Authorization = `token${store.state.token}`;
+   if(store.state.mutations.token){
+     config.headers.Authorization = `token${store.state.mutations.token}`;
    } else {
      console.log('无token');
    }
@@ -35,6 +21,12 @@ axios.interceptors.request.use((config) => {
 });
 //添加响应拦截器
 instance.interceptors.response.use(function(response){
+/*  const  Qloading = Loading.service({
+   text:'拼命加载中...',
+   spinner:'el-icon-loading',
+   background:'rgba(0, 0, 0, 0.8)',
+   target:'.main-content'
+   });*/
   //处理响应数据
   /*  console.log(response)*/
   if(response.status === 200){

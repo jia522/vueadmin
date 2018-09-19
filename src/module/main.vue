@@ -1,13 +1,20 @@
 <template>
   <div>
     <HEADbb></HEADbb>
-    <div class="divSlider" :style="setTop">
+    <div class="divSlider">
+      <el-switch
+        @change="slideswitch"
+        v-model="isCollapse"
+        active-color="#848f99"
+        inactive-color="#339ad9">
+      </el-switch>
       <el-menu ref="bn"
         :default-active="$route.path"
         class="el-menu-vertical-demo slideMenu"
         @open="handleOpen"
         @close="handleClose"
         @select="handleSelect"
+               :collapse="isCollapse"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
@@ -36,22 +43,21 @@
       </el-tabs>
 
     </div>
-    <div class="divFoot">
+<!--    <div class="divFoot">
       脚部
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
   import HEADbb from '../components/header.vue';
   import icon from '../layout/svgicon.vue';
+  import $ from 'jquery';
 export default {
 
    data () {
     return {
-      setTop: {
-        top: 90 + "px"
-      },
+      isCollapse:false,
       menuList:[
         {
           firstTitle:'导航一',
@@ -79,6 +85,17 @@ export default {
     }
   },
   methods: {
+    slideswitch(){
+
+      if(this.isCollapse){
+        $('.divSlider').animate({'width':'64'});
+        $('.main-container').animate({'margin-left':'64'});
+        console.log(this.$refs.bn)
+      }else {
+        $('.divSlider').animate({'width':'200px'});
+        $('.main-container').animate({'margin-left':'200'});
+      }
+  },
     removemainTab(targetName){
       let tabs = this.mainTabsList;
       let activeName = this.mainTabs;
@@ -139,10 +156,13 @@ export default {
       console.log(key, keyPath);
     },
     divHeight(){
-      var headHeight = $('.divHead').height();
-      var footerHeight = $('.divFoot').height();
-      var mainHeight =  window.innerHeight - headHeight - footerHeight;
-      $('.main-container').height(mainHeight + 'px');
+      this.$nextTick(function () {
+        var windowH = document.documentElement.clientHeight || document.body.clientHeight;
+        var headHeight = $('.divHead').height();
+        var mainHeight =  windowH - parseInt(headHeight) - parseInt($('.divHead').css('padding-top'))-41-20;
+        $('.main-content').css({'height': mainHeight + 'px'});
+      })
+
     },
 
   },
@@ -151,27 +171,10 @@ export default {
     'iconSvg':icon
 },
 mounted(){
-
     this.mainTabsList.push({name:this.$route.name,url:this.$route.path})
-    this.mainTabs = this.$route.name
-    var $this = this;
-
-    function setTop() {
-      var a = document.documentElement.scrollTop || document.body.scrollTop;//滚动条y轴上的距离
-      if (a < 87) {
-        $this.setTop.top = 87 - a + "px";
-      } else {
-        $this.setTop.top = 0
-      }
-    }
-
-    setTop()
-    window.onscroll = function () {
-      setTop()
-    }
-
-    this.divHeight();
+    this.mainTabs = this.$route.name;
     var _this = this;
+    this.divHeight();
     window.onresize =function () {
       _this.divHeight();
     }
@@ -196,11 +199,31 @@ mounted(){
     width: 200px;
     height: 100%;
     position: fixed;
-    top: 87px;
+    top: 65px;
     bottom: 0;
     left: 0;
     z-index: 1001;
-    overflow-y: auto;
+    .el-switch{
+      margin: 10px 0;
+    }
+
+    .el-menu{
+      .el-menu-item:hover{
+        background-color: #68727c !important;
+      }
+      .el-submenu{
+        .el-submenu__title:hover, .el-menu-item:hover{
+          background-color: #68727c !important;
+        }
+        .el-menu-item{
+          background-color: #434a50 !important;
+        }
+      }
+
+      .el-menu-item-group__title{
+        padding:0;
+      }
+    }
     &::-webkit-scrollbar {
       display: none
     }
@@ -209,20 +232,39 @@ mounted(){
     }
   }
   .main-container {
+    background:#f0f0f0;
     min-height: 160px;
-    overflow-y: auto;
     overflow-x:hidden;
     margin-left: 36px;
-    background: #fffeff;
     transition: margin-left 0.28s ease-out;
     margin-left: 200px;
     position: relative;
-    margin-bottom: 40px;
+  /*  margin-bottom: 40px;*/
+    .el-tabs__header{
+      background: #fff;
+      margin-bottom: 0px;
+    }
+    .el-tabs__item.is-active{
+      background:#f0f0f0 ;
+      font-weight: bold;
+      .el-icon-close{
+        background: #fff;
+        border: 1px solid #d9d9d9;
+      }
+      .el-icon-close:hover{
+        background: #409EFF;
+      }
+    }
+    .el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
+      border-bottom: #f0f0f0;
+    }
     .el-tabs--card>.el-tabs__header .el-tabs__nav{
       border-radius: 0px;
     }
   }
   .main-content{
+    padding: 10px;
+    overflow-y: scroll;
   }
   .slide-fade-enter-active {
     transition: all .5s ease;

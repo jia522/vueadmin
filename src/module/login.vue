@@ -1,26 +1,34 @@
 <template>
-  <el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginCon">
-    <el-form-item label="用戶名" prop="userName">
-      <el-input v-model="loginForm.userName"></el-input>
-    </el-form-item>
-    <el-form-item label="密码" prop="passWord">
-      <el-input v-model="loginForm.passWord"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="adminClick('loginForm')" :disabled="loginDisabled">登 录</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="adminlogin">
+    <el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginCon">
+      <div class="logo">
+        <img :src="login"/><span>数据平台管理中心</span>
+      </div>
+
+      <el-form-item prop="userName">
+        <el-input prefix-icon="icon iconfont icon-denglu" v-model="loginForm.userName" placeholder="用戶名"></el-input>
+      </el-form-item>
+      <el-form-item prop="passWord">
+        <el-input prefix-icon="icon iconfont icon-dengluyemianmima"  v-model="loginForm.passWord"  placeholder="密码"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button class="loginBtn" type="primary" @click="adminClick('loginForm')" :disabled="loginDisabled">登 录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
   import axios from 'axios';
   import store from '../store/index'
-  import * as types from '../store/types'
+  import * as types from '../store/types';
+  import login from '@/styles/images/loginLogo.png';
 export default {
     name:'Login',
    data () {
     return {
       loginDisabled:false,
+      login,
       loginForm:{
         userName:'admin',
         passWord:'123456'
@@ -77,28 +85,51 @@ export default {
 }
 </script>
 
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style  rel="stylesheet/less" lang="less" scoped>
+.adminlogin{
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+/*  background: url("../styles/images/loginBg.jpg");*/
+  background: url("../styles/images/loginBg1.png");
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='loginBg.jpg',sizingMethod='scale');
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
+  background-attachment: fixed;
   .loginCon{
-    width: 800px;
-    margin: 40px auto 0;
-    padding: 20px;
-    border: 1px solid #333;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin: -153px 0 0 -185px;
+    background-color:rgba(190,227,254,0.7);
+    border-radius: 5px;
+    width: 290px;
+    padding: 20px 40px;
+    box-shadow:0px 0px 40px #0E2D5F;
+    .logo{
+      margin-bottom: 20px;
+      img{
+        display: inline-block;
+        width: 95px;
+        height: auto;
+        vertical-align: middle;
+      }
+      span{
+        display: inline-block;
+        font-size: 22px;
+        font-weight: bold;
+        color: #005bab;
+        vertical-align: middle;
+      }
+    }
+    .loginBtn{
+      display: block;
+      width: 100%;
+    }
   }
-.el-form-item__label:before{
-  display:none;
+  .el-form-item__label:before{
+    display:none;
+  }
 }
+
 </style>
